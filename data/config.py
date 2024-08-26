@@ -12,6 +12,8 @@ DELAYS = {
 # Is it need to buy this https://t.me/ApeCryptoChat/26060 booster
 BOOST_TURBO_CHARGER = True
 
+REF_CODE = 'linkCode_125262109'
+
 BLACKLIST_TASKS = ['Connect Telegram and complete identity verification', 'Подключите Telegram и пройдите верификацию личности', 'Подключение TON к кошельку OKX']
 
 PROXY = {
@@ -34,7 +36,4 @@ Soft for https://t.me/OKX_official_bot
 register accounts in web app; make random prediction;
 complete tasks; active booster "Reload Fuel Tank";
 upgrade booster "Turbo Charger"
-
-The soft also collects statistics on accounts and uses proxies from {f"the {PROXY['PROXY_PATH']} file" if PROXY['USE_PROXY_FROM_FILE'] else "the accounts.json file"}
-To buy this soft with the option to set your referral link write me: https://t.me/Axcent_ape
 """

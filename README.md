@@ -1,8 +1,6 @@
 # Okx-Racer
 Soft for https://t.me/OKX_official_bot
 
-More crypto themes and softs in telegram: [ApeCryptor](https://t.me/+_xCNXumUNWJkYjAy "ApeCryptor") 🦧
-
 ## Functionality
 | Functional                                                       | Supported |
 |------------------------------------------------------------------|:---------:|

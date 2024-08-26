@@ -17,7 +17,6 @@ class OKXRacer:
     def __init__(self, thread: int, session_name: str, phone_number: str, proxy: [str, None]):
         self.account = session_name + '.session'
         self.account_info = None
-        self.rn = 'linkCode_95213168'
         self.thread = thread
         self.proxy = f"{ config.PROXY['TYPE']['REQUESTS']}://{proxy}" if proxy is not None else None
         connector = ProxyConnector.from_url(self.proxy) if proxy else aiohttp.TCPConnector(verify_ssl=False)
@@ -60,7 +59,7 @@ class OKXRacer:
     async def stats(self):
         await self.login()
 
-        json_data = {"extUserName": self.account_info['user_name'], "linkCode": self.rn.split('_')[1]}
+        json_data = {"extUserName": self.account_info['user_name'], "linkCode": config.REF_CODE.split('_')[1]}
         r = await (await self.session.post(f"https://www.okx.com/priapi/v1/affiliate/game/racer/info?t={int(time.time()*1000)}", json=json_data)).json()
 
         balance = r.get('data').get('balancePoints')
@@ -89,7 +88,7 @@ class OKXRacer:
 
 
     async def info(self):
-        json_data = {"extUserName": self.account_info['user_name'], "linkCode": self.rn.split('_')[1]}
+        json_data = {"extUserName": self.account_info['user_name'], "linkCode": config.REF_CODE.split('_')[1]}
         resp = await self.session.post(f"https://www.okx.com/priapi/v1/affiliate/game/racer/info?t={int(time.time()*1000)}", json=json_data)
 
         return (await resp.json()).get('data')
@@ -132,7 +131,6 @@ class OKXRacer:
         await self.session.close()
 
     async def login(self):
-        self.rn = self.rn.split('_')[0] + '_95213168'
         await asyncio.sleep(random.uniform(*config.DELAYS['ACCOUNT']))
         query = await self.get_tg_web_data()
 
@@ -152,7 +150,7 @@ class OKXRacer:
                 app=InputBotAppShortName(bot_id=await self.client.resolve_peer('OKX_official_bot'), short_name="OKX_Racer"),
                 platform='android',
                 write_allowed=True,
-                start_param=self.rn
+                start_param=config.REF_CODE
             ))
             await self.client.disconnect()
             auth_url = web_view.url
